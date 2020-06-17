@@ -1,5 +1,5 @@
 ---
-title: "Comparing Effect of Ozone Levels on Temperature by Month"
+title: "Comparing the Effect of Ozone Levels on Temperature by Month in New York City"
 author: "J.E. Panzik"
 date: "6/16/2020"
 output: ioslides_presentation
@@ -9,19 +9,27 @@ output: ioslides_presentation
 - Does ozone level appear to impact the measured temperature?
 - If present, does the does this pattern vary by month?
 
+### Interactive Shiny App
+- App:
+    - <https://jepanzik.shinyapps.io/DDP_CourseProject_ShinyApp/>
+- Source Code:
+    - <https://github.com/jepanzik/Coursera-Developing-Data-Products-Week-4-Project/tree/master/DDP_CourseProject_ShinyApp>
+
+
 ## Plotting code
 
 ```{r plotcode, eval=FALSE, message=FALSE, warning=FALSE}
 library(ggplot2); library(gridExtra)
 data <- airquality[complete.cases(airquality),]
 data$Month <- as.factor(data$Month)
-p1 <- ggplot(data=data, aes(x=Ozone, y=Temp)) + geom_point(aes(color=Month)) +
-      xlab("Ozone (ppb)") + ylab("Temperature (F)") + ylim(55, 100) +
+p1 <- ggplot(data=data, aes(x=Ozone, y=Temp)) +
+      geom_point(aes(color=Month)) + xlab("Ozone (ppb)") +
+      ylab("Temperature (F)") + ylim(55, 100) +
       xlim(0, 170) + geom_smooth(method='lm')
 
-p2 <- ggplot(data=data, aes(x=Ozone, y=Temp, color=Month)) + geom_point() +
-      xlab("Ozone (ppb)") + ylab("Temperature (F)") + ylim(55, 100) +
-      xlim(0, 170) + geom_smooth(method='lm')
+p2 <- ggplot(data=data, aes(x=Ozone, y=Temp, color=Month)) +
+      geom_point() + xlab("Ozone (ppb)") + ylab("Temperature (F)") +
+      ylim(55, 100) + xlim(0, 170) + geom_smooth(method='lm')
 
 grid.arrange(p1, p2, ncol=2)
 ```
@@ -32,13 +40,14 @@ grid.arrange(p1, p2, ncol=2)
 library(ggplot2); library(gridExtra)
 data <- airquality[complete.cases(airquality),]
 data$Month <- as.factor(data$Month)
-p1 <- ggplot(data=data, aes(x=Ozone, y=Temp)) + geom_point(aes(color=Month)) +
-      xlab("Ozone (ppb)") + ylab("Temperature (F)") + ylim(55, 100) +
+p1 <- ggplot(data=data, aes(x=Ozone, y=Temp)) +
+      geom_point(aes(color=Month)) + xlab("Ozone (ppb)") +
+      ylab("Temperature (F)") + ylim(55, 100) +
       xlim(0, 170) + geom_smooth(method='lm')
 
-p2 <- ggplot(data=data, aes(x=Ozone, y=Temp, color=Month)) + geom_point() +
-      xlab("Ozone (ppb)") + ylab("Temperature (F)") + ylim(55, 100) +
-      xlim(0, 170) + geom_smooth(method='lm')
+p2 <- ggplot(data=data, aes(x=Ozone, y=Temp, color=Month)) +
+      geom_point() + xlab("Ozone (ppb)") + ylab("Temperature (F)") +
+      ylim(55, 100) + xlim(0, 170) + geom_smooth(method='lm')
 
 grid.arrange(p1, p2, ncol=2)
 ```

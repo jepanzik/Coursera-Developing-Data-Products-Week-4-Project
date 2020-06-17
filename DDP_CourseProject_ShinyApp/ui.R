@@ -18,6 +18,7 @@ shinyUI(fluidPage(
     # Sidebar with a slider input for number of bins
     sidebarLayout(
         sidebarPanel(
+            helpText("Select which months you would like to view data and hit 'Submit'"),
             checkboxInput("may", "May", TRUE),
             checkboxInput("june", "June", TRUE),
             checkboxInput("july", "July", TRUE),
